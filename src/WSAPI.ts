@@ -65,9 +65,7 @@ export class WSAPI {
         let ws = this.webSocketConnect('wss://www.bitmex.com/realtime')
         this.ws = ws
 
-        ws.onopen = () => {
-            this.onopen()
-        }
+        ws.onopen = () => this.onopen()
 
         ws.onclose = () => this.onclose()
 
