@@ -3,8 +3,7 @@
     "module": "commonjs",
     "target": "es6",
     "lib": [
-      "es6",
-      "dom"
+      "es6"
     ],
     "sourceMap": true,
     "strictNullChecks": true,
@@ -13,10 +12,5 @@
     "noImplicitThis": true,
     "noImplicitAny": true,
     "suppressImplicitAnyIndexErrors": true
-  },
-  "exclude": [
-    "node_modules",
-    "build",
-    "public"
-  ]
+  }
 }
