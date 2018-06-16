@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const findItem = (a, arr, keys) => arr.find(b => keys.every(key => a[key] === b[key]));
 class WSAPI {
-    constructor(webSocketConnect, arr) {
+    constructor(webSocketConnect) {
         this.onopen = () => { };
         this.onclose = () => { };
         this.onmessage = (data) => { };
@@ -39,18 +39,14 @@ class WSAPI {
             wallet: [],
         };
         this.connect = () => {
-            const { arr } = this;
             let keysDic = new Map();
             let hasPartial = new Map();
             let ws = this.webSocketConnect('wss://www.bitmex.com/realtime');
+            this.ws = ws;
             ws.onopen = () => {
                 this.onopen();
-                arr.map(v => ws.send({ op: 'subscribe', args: v.filter != undefined ? v.theme + ':' + v.filter : v.theme }));
             };
-            ws.onclose = () => {
-                this.onclose();
-                setTimeout(() => this.connect(), 100);
-            };
+            ws.onclose = () => this.onclose();
             ws.onmessage = obj => {
                 const fd = obj;
                 const { table, keys, action, data } = fd;
@@ -97,7 +93,12 @@ class WSAPI {
             };
         };
         this.webSocketConnect = webSocketConnect;
-        this.arr = arr;
+    }
+    subscribe(arr) {
+        arr.map(v => this.ws.send({
+            op: 'subscribe',
+            args: v.filter != undefined ? v.theme + ':' + v.filter : v.theme
+        }));
     }
 }
 exports.WSAPI = WSAPI;

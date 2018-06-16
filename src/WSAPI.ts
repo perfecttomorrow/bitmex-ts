@@ -5,11 +5,9 @@ const findItem = (a: any, arr: any[], keys: any[]) => arr.find(b => keys.every(k
 export class WSAPI {
 
     private webSocketConnect: WebSocketConnect
-    private arr: { theme: SubscribeTheme, filter?: string }[]
 
-    constructor(webSocketConnect: WebSocketConnect, arr: { theme: SubscribeTheme, filter?: string }[]) {
+    constructor(webSocketConnect: WebSocketConnect) {
         this.webSocketConnect = webSocketConnect
-        this.arr = arr
     }
 
     onopen = () => { }
@@ -49,25 +47,29 @@ export class WSAPI {
         wallet: [],
     }
 
-    connect = () => {
+    subscribe(arr: { theme: SubscribeTheme, filter?: string }[]) {
+        arr.map(v => this.ws.send({
+            op: 'subscribe',
+            args: v.filter != undefined ? v.theme + ':' + v.filter : v.theme
+        }))
+    }
 
-        const { arr } = this
+    ws: any
+
+    connect = () => {
 
         let keysDic = new Map<string, string[]>()
 
         let hasPartial = new Map<string, boolean>()
 
         let ws = this.webSocketConnect('wss://www.bitmex.com/realtime')
+        this.ws = ws
 
         ws.onopen = () => {
             this.onopen()
-            arr.map(v => ws.send({ op: 'subscribe', args: v.filter != undefined ? v.theme + ':' + v.filter : v.theme }))
         }
 
-        ws.onclose = () => {
-            this.onclose()
-            setTimeout(() => this.connect(), 100)
-        }
+        ws.onclose = () => this.onclose()
 
         ws.onmessage = obj => {
             const fd: FrameData = obj
