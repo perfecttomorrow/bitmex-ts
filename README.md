@@ -2,5 +2,5 @@
 
 ## npm
 ```sh 
-npm install bitmex-ts -s
+npm install bitmex-ts -S
 ```
