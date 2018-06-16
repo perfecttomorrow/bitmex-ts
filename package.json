@@ -1,7 +1,7 @@
 {
   "name": "bitmex-ts",
-  "module": "index.js",
-  "typings": "index.d.ts",
+  "module": "src/index.js",
+  "typings": "src/index.d.ts",
   "version": "1.0.0",
   "description": "Bitmex TypeScript API",
   "scripts": {
