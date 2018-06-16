@@ -1,0 +1,15 @@
+{
+  "name": "bitmex-ts",
+  "module": "index.js",
+  "typings": "index.d.ts",
+  "version": "1.0.0",
+  "description": "Bitmex TypeScript API",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "bitmex"
+  ],
+  "author": "fc01",
+  "license": "MIT"
+}
