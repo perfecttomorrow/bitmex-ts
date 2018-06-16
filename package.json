@@ -1,8 +1,8 @@
 {
   "name": "bitmex-ts",
-  "module": "src/index.js",
-  "typings": "src/index.d.ts",
-  "version": "1.0.1",
+  "module": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "version": "1.0.2",
   "description": "Bitmex TypeScript API",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
