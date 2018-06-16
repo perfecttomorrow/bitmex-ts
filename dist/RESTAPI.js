@@ -1,4 +1,6 @@
-export const RESTAPI = (httpRequest) => ({
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.RESTAPI = (httpRequest) => ({
     Announcement: {
         get: (req) => httpRequest({ method: 'GET', path: '/api/v1/announcement', req }),
         getUrgent: (req) => httpRequest({ method: 'GET', path: '/api/v1/announcement/urgent', req })

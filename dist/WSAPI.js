@@ -1,5 +1,7 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const findItem = (a, arr, keys) => arr.find(b => keys.every(key => a[key] === b[key]));
-export class WSAPI {
+class WSAPI {
     constructor(webSocketConnect, arr) {
         this.onopen = () => { };
         this.onclose = () => { };
@@ -98,3 +100,4 @@ export class WSAPI {
         this.arr = arr;
     }
 }
+exports.WSAPI = WSAPI;
