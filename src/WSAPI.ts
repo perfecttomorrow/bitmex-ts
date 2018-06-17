@@ -54,6 +54,13 @@ export class WSAPI {
         }))
     }
 
+    unsubscribe(arr: { theme: SubscribeTheme, filter?: string }[]) {
+        arr.map(v => this.ws.send({
+            op: 'unsubscribe',
+            args: v.filter != undefined ? v.theme + ':' + v.filter : v.theme
+        }))
+    }
+
     ws: any
 
     connect = () => {
